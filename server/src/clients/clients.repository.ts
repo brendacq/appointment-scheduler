@@ -3,13 +3,14 @@ import { Client } from './entities/client.entity';
 
 @Injectable()
 export class ClientsRepository{
-    private clientsDatabase: Client[];
+    private clientsDatabase: Client[] = [];
     save(client: Client){
         try {
             this.clientsDatabase.push(client);
-            return { msg: 'Client successfully created'}
+            
+            return client;
         } catch (error) {
-            throw new Error('Error')
+            throw new Error('Error in clients repo')
         }
     }
 }
