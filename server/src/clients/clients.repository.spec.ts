@@ -1,4 +1,5 @@
 import { TestingModule,Test } from '@nestjs/testing'
+import { clientMock } from 'test/mocks/clients/client.entity.mock';
 import { ClientsRepository } from './clients.repository'
 import { Client } from './entities/client.entity';
 
@@ -19,13 +20,7 @@ describe('Clients repository', () => {
 
     describe('save', () => {
         it('should save a new client', async () => {
-            const newClient: Client = {
-                age: 30,
-                documentNumber: '1111',
-                id: '',
-                name: '',
-                password: ''
-            }
+            const newClient: Client = clientMock;
 
             const response = await repository.save(newClient);
 
