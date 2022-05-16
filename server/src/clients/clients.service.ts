@@ -6,9 +6,10 @@ import { CreateClientDto } from './dto/create-client.dto';
 
 @Injectable()
 export class ClientsService {
-  constructor(private clientsRepository: ClientsRepository){}
+  constructor(private readonly clientsRepository: ClientsRepository){}
   async create(client: CreateClientDto) {
     const passwordHash = await bcrypt.hash(client.password, 10);
+    console.log('clients service');
     
     const newClient = {
       id: uuid(),
@@ -16,8 +17,9 @@ export class ClientsService {
       password: passwordHash,
     }
 
-    try {
-      return this.clientsRepository.save(newClient);
+    try {      
+      this.clientsRepository.save(newClient);
+      return newClient;
     } catch (error) {
       throw new Error('Error to save client');
     }
