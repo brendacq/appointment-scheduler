@@ -1,9 +1,12 @@
+import { Client } from "src/clients/entities/client.entity";
+import { Doctor } from "src/doctors/entities/doctor.entity";
+
 export class Appointment {
     id: string; 
 
-    patient: string;
+    patient: Client;
 
-    doctor: string;
+    doctor: Doctor;
 
     appointmentDate: Date;
 
