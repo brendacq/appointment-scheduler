@@ -1,18 +1,18 @@
 import { Injectable, Inject, HttpException } from '@nestjs/common';
 import { DynamoDB } from 'aws-sdk';
 import { TABLE_NAMES } from '../shared/constants';
-import { Client } from './entities/client.entity';
+import { Patient } from './entities/patient.entity';
 
 @Injectable()
-export class ClientsRepository {
+export class PatientsRepository {
   constructor(@Inject('DYNAMO') private db: DynamoDB.DocumentClient) {}
 
-  public async save(client: Client) {
+  public async save(patient: Patient) {
     try {
       const response = await this.db
         .put({
-          TableName: TABLE_NAMES.Clients,
-          Item: client,
+          TableName: TABLE_NAMES.Patients,
+          Item: patient,
         })
         .promise();
 
