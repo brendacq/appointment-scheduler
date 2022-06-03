@@ -1,4 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
+import { Address } from "../entities/patient.entity";
 
 export class CreatePatientDto {
     @ApiProperty()
@@ -11,5 +12,11 @@ export class CreatePatientDto {
     age: number;
 
     @ApiProperty()
-    password: string;
+    address: Address;
+
+    @ApiProperty()
+    phone: string;
+
+    @ApiProperty()
+    email: string;
 }
