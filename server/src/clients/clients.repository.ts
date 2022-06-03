@@ -1,16 +1,24 @@
-import {Injectable} from '@nestjs/common'
+import { Injectable, Inject, HttpException } from '@nestjs/common';
+import { DynamoDB } from 'aws-sdk';
+import { TABLE_NAMES } from '../shared/constants';
 import { Client } from './entities/client.entity';
 
 @Injectable()
-export class ClientsRepository{
-    private clientsDatabase: Client[] = [];
-    save(client: Client){
-        try {
-            this.clientsDatabase.push(client);
-            
-            return client;
-        } catch (error) {
-            throw new Error('Error in clients repo')
-        }
+export class ClientsRepository {
+  constructor(@Inject('DYNAMO') private db: DynamoDB.DocumentClient) {}
+
+  public async save(client: Client) {
+    try {
+      const response = await this.db
+        .put({
+          TableName: TABLE_NAMES.Clients,
+          Item: client,
+        })
+        .promise();
+
+      return response;
+    } catch (error) {
+      throw new HttpException(error, 500);
     }
+  }
 }
