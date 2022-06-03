@@ -27,3 +27,29 @@ import client from './config'
         throw Error(`Error in create tables: ${err}`);
     });
 }
+
+// Criar tabela de Doctors
+() => {
+    const doctorsTableParams: CreateTableInput = {
+        TableName: TABLE_NAMES.Doctors,
+        KeySchema: [
+            { AttributeName: 'id', KeyType: 'HASH' }
+        ],
+        AttributeDefinitions: [
+            {AttributeName: 'id', AttributeType: 'S'},
+        ], 
+        ProvisionedThroughput: {
+            ReadCapacityUnits: 5,
+            WriteCapacityUnits: 10,
+        }
+    }
+
+    const command = new CreateTableCommand(doctorsTableParams);
+    client.send(command)
+    .then(response => {
+        return response;
+    })
+    .catch(err => {
+        throw Error(`Error in create tables: ${err}`);
+    });
+}

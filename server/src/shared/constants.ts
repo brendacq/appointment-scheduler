@@ -1,3 +1,4 @@
 export const TABLE_NAMES = {
-    Clients: 'Scheduler.Clients'
+    Clients: 'Scheduler.Clients',
+    Doctors: 'Scheduler.Doctors'
 }
