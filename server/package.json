@@ -29,7 +29,7 @@
     "@nestjs/platform-express": "^8.0.0",
     "@nestjs/swagger": "^5.2.1",
     "@types/bcrypt": "^5.0.0",
-    "aws-sdk": "^2.1135.0",
+    "aws-sdk": "^2.1148.0",
     "bcrypt": "^5.0.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
