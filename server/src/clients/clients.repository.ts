@@ -7,7 +7,7 @@ import { Client } from './entities/client.entity';
 export class ClientsRepository {
   constructor(@Inject('DYNAMO') private db: DynamoDB.DocumentClient) {}
 
-  async save(client: Client) {
+  public async save(client: Client) {
     try {
       const response = await this.db
         .put({
@@ -18,7 +18,7 @@ export class ClientsRepository {
 
       return response;
     } catch (error) {
-      throw new HttpException(error.response.data, 500);
+      throw new HttpException(error, 500);
     }
   }
 }
