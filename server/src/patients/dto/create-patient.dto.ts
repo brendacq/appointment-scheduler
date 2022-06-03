@@ -1,9 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export class Client {
-    @ApiProperty()
-    id: string;
-
+export class CreatePatientDto {
     @ApiProperty()
     name: string;
 
