@@ -21,7 +21,7 @@ export class PatientsService {
       const response = await this.patientsRepository.save(newPatient);
       return response;
     } catch (error) {
-      throw new Error('Error to save client');
+      throw new Error(error);
     }
   }
 }
